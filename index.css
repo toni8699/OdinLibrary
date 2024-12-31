@@ -1,0 +1,62 @@
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+.book{
+    border: 1px solid black;
+    margin: 10px;
+    width: 200px;
+    height: auto;
+    border-radius: 10px;
+    background-color: lightblue;
+    position: relative;
+}
+.remove{
+    position: absolute;
+    bottom: 10px;
+    right: 10px;
+    border: none;
+    background-color: lightblue;
+    font-weight: bold;
+    color: red;
+}
+.toggle-read{
+    position: absolute;
+    top:20%;
+    right:10px;
+    border: none;
+    background-color: lightblue;
+    font-weight: bold;
+    color: green;
+}
+.book h2{
+    text-align: center;
+    margin-bottom: 10px;
+    background-color: lightgreen;
+    border-bottom: 1px solid black;
+    border-radius: 10px;
+}
+.book p{
+    margin-bottom: 10px;
+    padding: 5px;
+}
+
+#library{
+    display: flex;
+    border: 1px solid black;
+    padding: 3rem;
+    justify-content: start;
+    align-items: start;
+    flex-wrap: wrap;
+
+}
+.header{
+   background-color: grey;
+}
+footer{
+    background-color: green;
+    color: white;
+    text-align: center;
+    padding: 10px;
+}
