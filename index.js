@@ -24,19 +24,23 @@ function displayLibrary() {
     const libraryContainer = document.getElementById("library");
     libraryContainer.innerHTML = "";
     library.forEach((book) => {
-        const bookElement = document.createElement("div");
-        bookElement.classList.add("book");
-        bookElement.innerHTML = `
-            <h2>${book.title}</h2>
-            <p>Author: ${book.author}</p>
-            <p>Pages: ${book.pages}</p>
-            <p>Read: ${book.read ? "Yes" : "No"}</p>
-            <button class="remove">X</button>
-            <button class="toggle-read">Toggle Read</button>
-        `;
+        const bookElement = createBook(book);
         libraryContainer.appendChild(bookElement);
     });}
 
+function createBook(book){
+    const bookElement = document.createElement("div");
+    bookElement.classList.add("book");
+    bookElement.innerHTML = `
+        <h2>${book.title}</h2>
+        <p>Author: ${book.author}</p>
+        <p>Pages: ${book.pages}</p>
+        <p>Read: ${book.read ? "Yes" : "No"}</p>
+        <button class="remove">X</button>
+        <button class="toggle-read">Toggle Read</button>
+    `;
+    return bookElement;
+}
 
 document.getElementById("library").addEventListener("click", (event) => {
     if (event.target.classList.contains("remove")) {
@@ -53,13 +57,26 @@ document.getElementById("library").addEventListener("click", (event) => {
     }
 });
 
-const addbutton = document.getElementById("addBook");
+const diaglog = document.querySelector("dialog");
+const cancelbutton = document.getElementById("cancel");
+
+const addbutton = document.getElementById("addButton");
 addbutton.addEventListener("click", () => {
-    const title = prompt("Enter the title of the book:");
-    const author = prompt("Enter the author of the book:");
-    const pages = prompt("Enter the number of pages in the book:");
-    const read = confirm("Have you read the book?");
-    const book = new Book(title, author, pages);
+    diaglog.showModal();
+});
+
+const add = document.getElementById("add");
+add.addEventListener("click", (event) => {
+    event.preventDefault();
+    const title = document.getElementById("title").value;
+    const author = document.getElementById("author").value;
+    const pages = document.getElementById("pages").value;
+    const read = document.getElementById("read").checked;
+    const book = new Book(title, author, pages, read);
     addBookToLibrary(book);
     displayLibrary();
+    diaglog.close();
+});
+cancelbutton.addEventListener("click", () => {
+    diaglog.close();
 });
